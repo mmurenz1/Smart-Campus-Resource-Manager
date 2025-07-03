@@ -50,6 +50,9 @@ public interface ResourceRepository extends JpaRepository<Resource, Long> {
     @Query("SELECT COUNT(r) FROM Resource r WHERE r.type = :type AND r.isAvailable = true")
     Long countAvailableResourcesByType(@Param("type") ResourceType type);
     
+    // Count available resources
+    Long countByIsAvailableTrue();
+    
     // Find most popular resource types (most bookings - we'll implement this later)
     @Query("SELECT r.type, COUNT(r) as resourceCount FROM Resource r GROUP BY r.type ORDER BY resourceCount DESC")
     List<Object[]> findResourceCountByType();
